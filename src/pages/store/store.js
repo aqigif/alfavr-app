@@ -48,6 +48,7 @@ function Store() {
     <>
       <WrapperScene assets={<Assets />}>
         <a-entity gltf-model="#store" position="0 0 0"></a-entity>
+        <a-scene loading-screen="dotsColor: red; backgroundColor: white"></a-scene>
         {/* <Entity
           primitive="a-circle"
           events={{
