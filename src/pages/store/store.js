@@ -5,6 +5,13 @@ const Assets = () => {
   return (
     <a-assets>
       <a-asset-item id="store" src="/assets/alfamart-6.glb"></a-asset-item>
+      <a-assets>
+        <img
+          id="store-icon"
+          alt="store-icon"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnz-9Nq-b2NYqQFfS1KaQXJmC8KDL1wOzNHg&usqp=CAU"
+        />
+      </a-assets>
     </a-assets>
   );
 };
@@ -24,7 +31,6 @@ function Store() {
       handleCashier();
     }
   }, [AFRAME]);
-  console.log(click);
   const handleCashier = () => {
     try {
       if (AFRAME) {
@@ -73,6 +79,52 @@ function Store() {
             });
           },
         });
+
+        AFRAME.registerComponent("close-shop", {
+          init: function () {
+            this.el.addEventListener("mouseleave", function (evt) {
+              setClick((prev) => {
+                if (!prev?.isVr) {
+                  return prev;
+                }
+                return {
+                  ...prev,
+                  trigger: "mouseleave",
+                  fuse: "",
+                  show: false,
+                };
+              });
+            });
+            this.el.addEventListener("click", function (evt) {
+              // console.log("I was fusing at: ", evt.detail.intersection.point);
+              setClick((prev) => {
+                if (!prev?.isVr) {
+                  handleMove("-2 1.5 -2.3");
+                  return {
+                    ...prev,
+                    trigger: "click",
+                    fuse: "",
+                    show: false,
+                  };
+                }
+                return prev;
+              });
+            });
+            this.el.addEventListener("fusing", function (evt) {
+              // console.log("I was fusing at: ", evt.detail.intersection.point);
+              setClick((prev) => {
+                if (!prev?.isVr) {
+                  return prev;
+                }
+                return {
+                  ...prev,
+                  trigger: "shop",
+                  fuse: "cashier",
+                };
+              });
+            });
+          },
+        });
       }
     } catch (error) {}
   };
@@ -113,21 +165,25 @@ function Store() {
         }}
         onClickScene={() =>
           setClick((prev) => {
-            console.log(prev);
             if (prev?.isVr) {
               if (prev?.fuse === "cashier") {
                 handleMove("-2 0 -2.3", "0 0 0");
                 if (prev?.cameraPosition === "-2 0 -2.3") {
-                  console.log("modal action");
                   return {
                     ...prev,
                     cameraPosition: "-2 0 -2.3",
-                    show: !prev?.show,
+                    show: true,
                   };
                 }
                 return {
                   ...prev,
                   cameraPosition: "-2 0 -2.3",
+                };
+              } else if (prev?.fuse === "shop") {
+                return {
+                  ...prev,
+                  cameraPosition: "-2 0 -2.3",
+                  show: false,
                 };
               }
               return {
@@ -181,6 +237,56 @@ function Store() {
               geometry="primitive: ring; radiusOuter: 0; radiusInner: 0"
             ></a-entity>
           </a-camera>
+        )}
+        {click?.show && (
+          <>
+            <a-plane
+              width="1.9"
+              height="1.3"
+              color="white"
+              opacity="0.9"
+              position="-2 1.55 -3.499"
+            >
+              <a-text
+                position="-0.85 0.5 0"
+                height="1"
+                value="Welcome to"
+                color="black"
+                scale="0.5 0.5 0.5"
+              ></a-text>
+              <a-text
+                position="-0.85 0.37 0"
+                value="Alfamart Virtual Store"
+                color="black"
+                scale="0.6 0.6 0.6"
+              ></a-text>
+              <a-text
+                position="-0.85 0.26 0"
+                color="black"
+                value="Marketplace where you can buy everything virtually"
+                scale="0.2 0.2 0.2"
+              ></a-text>
+              <a-plane
+                width="1.5"
+                height="0.01"
+                color="red"
+                position="-0.20 0.20 0.01"
+              ></a-plane>
+              <a-plane
+                width="0.5"
+                height="0.1"
+                color="red"
+                position="-0.59 0.10 0.01"
+                close-shop
+              >
+                <a-text
+                  position="-0.1 0 0"
+                  value="Shop Now"
+                  scale="0.2 0.2 0.2"
+                ></a-text>
+              </a-plane>
+            </a-plane>
+          </>
         )}
       </WrapperScene>
     </>
