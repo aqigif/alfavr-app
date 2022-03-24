@@ -91,7 +91,6 @@ function Store() {
                   ...prev,
                   trigger: "mouseleave",
                   fuse: "",
-                  show: false,
                 };
               });
             });
@@ -188,7 +187,6 @@ function Store() {
               }
               return {
                 ...prev,
-                show: false,
               };
             }
             return prev;
