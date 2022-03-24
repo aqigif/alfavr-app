@@ -37,6 +37,7 @@ function Store() {
                 }
                 return {
                   ...prev,
+                  trigger: "mouseleave",
                   fuse: "",
                 };
               });
@@ -48,6 +49,7 @@ function Store() {
                   handleMove("-2 1.5 -2.3");
                   return {
                     ...prev,
+                    trigger: "click",
                     cameraPosition: "-2 1.5 -2.3",
                     show: prev.cameraPosition === "-2 1.5 -2.3",
                     fuse: "cashier",
@@ -64,6 +66,7 @@ function Store() {
                 }
                 return {
                   ...prev,
+                  trigger: "fusing",
                   fuse: "cashier",
                 };
               });
@@ -110,13 +113,21 @@ function Store() {
         }}
         onClickScene={() =>
           setClick((prev) => {
+            console.log(prev);
             if (prev?.isVr) {
               if (prev?.fuse === "cashier") {
                 handleMove("-2 0 -2.3", "0 0 0");
+                if (prev?.cameraPosition === "-2 0 -2.3") {
+                  console.log("modal action");
+                  return {
+                    ...prev,
+                    cameraPosition: "-2 0 -2.3",
+                    show: !prev?.show,
+                  };
+                }
                 return {
                   ...prev,
                   cameraPosition: "-2 0 -2.3",
-                  show: prev.cameraPosition === "-2 0 -2.3",
                 };
               }
               return {
@@ -135,11 +146,11 @@ function Store() {
         ></a-entity>
         <a-box
           cursor-listener
-          position="-2 0.5 -4"
+          position="-2 0.5 -8.62"
           width="4"
           height="5"
-          depth="2"
-          material={"opacity: 0.0; transparent: true"}
+          depth="10"
+          material={"opacity:0.0;"}
         />
         <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
         <a-entity
@@ -158,7 +169,7 @@ function Store() {
         {click?.isVr ? (
           <a-entity id="camera" position="0 0 0">
             <a-camera position="0 0 0">
-              <a-cursor color="black"></a-cursor>
+              <a-cursor color="red" position="0 0 -1"></a-cursor>
             </a-camera>
           </a-entity>
         ) : (
