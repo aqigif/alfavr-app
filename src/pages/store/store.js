@@ -1,5 +1,5 @@
 import { Entity } from "aframe-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../../components/modal";
 import WrapperScene from "../../components/scene";
 import DrinkMenuContent from "./components/drinkMenuContent";
