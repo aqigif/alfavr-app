@@ -15,15 +15,16 @@ function Store() {
     show: false,
     fuse: "",
     isVr: false,
+    cameraPosition: "",
   });
-  // const [cameraPosition, setCameraPosition] = useState("0 1.5 10");
+  const [cameraPosition, setCameraPosition] = useState("0 1.5 0");
 
   React.useEffect(() => {
     if (AFRAME) {
       handleCashier();
     }
   }, [AFRAME]);
-
+  console.log(click);
   const handleCashier = () => {
     try {
       if (AFRAME) {
@@ -44,9 +45,11 @@ function Store() {
               // console.log("I was fusing at: ", evt.detail.intersection.point);
               setClick((prev) => {
                 if (!prev?.isVr) {
+                  handleMove("-2 1.5 -2.3");
                   return {
                     ...prev,
-                    show: true,
+                    cameraPosition: "-2 1.5 -2.3",
+                    show: prev.cameraPosition === "-2 1.5 -2.3",
                     fuse: "cashier",
                   };
                 }
@@ -70,45 +73,50 @@ function Store() {
       }
     } catch (error) {}
   };
-  // const handleMove = (to) => {
-  //   setCameraPosition(to);
-  //   const cameraRig = document.getElementById("camera");
-  //   cameraRig.setAttribute(
-  //     "animation",
-  //     `property: position; from: ${cameraPosition}; to: ${to}; dur: 700`
-  //   );
-  // };
+  const handleMove = (to, from) => {
+    setCameraPosition(to);
+    const cameraRig = document.getElementById("camera");
+    cameraRig.setAttribute(
+      "animation",
+      `property: position; from: ${from || cameraPosition}; to: ${to}; dur: 700`
+    );
+  };
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
+  // console.log(click);
   return (
     <>
       <WrapperScene
         assets={<Assets />}
         noVr={params?.["plain"] !== undefined}
         forceVR={params?.["vr-mode"] !== undefined}
-        onEnterVR={() =>
+        onEnterVR={() => {
+          setCameraPosition("0 0 0");
           setClick((prev) => {
             return {
               ...prev,
               isVr: true,
             };
-          })
-        }
-        onExitVR={() =>
+          });
+        }}
+        onExitVR={() => {
+          setCameraPosition("0 1.5 0");
           setClick((prev) => {
             return {
               ...prev,
               isVr: false,
             };
-          })
-        }
+          });
+        }}
         onClickScene={() =>
           setClick((prev) => {
             if (prev?.isVr) {
               if (prev?.fuse === "cashier") {
+                handleMove("-2 0 -2.3", "0 0 0");
                 return {
                   ...prev,
-                  show: true,
+                  cameraPosition: "-2 0 -2.3",
+                  show: prev.cameraPosition === "-2 0 -2.3",
                 };
               }
               return {
@@ -130,6 +138,7 @@ function Store() {
           position="-2 0.5 -4"
           width="4"
           height="5"
+          depth="2"
           material={"opacity: 0.0; transparent: true"}
         />
         <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
@@ -145,18 +154,23 @@ function Store() {
           light="color: #fff; intensity: 0.2"
           position="-4 -4 -5"
         ></a-entity>
-        <a-camera position="0 1.5 0" touch-enabled="true">
-          {click?.isVr ? (
-            <a-cursor color="black"></a-cursor>
-          ) : (
+
+        {click?.isVr ? (
+          <a-entity id="camera" position="0 0 0">
+            <a-camera position="0 0 0">
+              <a-cursor color="black"></a-cursor>
+            </a-camera>
+          </a-entity>
+        ) : (
+          <a-camera id="camera" position="0 1.5 0" touch-enabled="true">
             <a-entity
               cursor="rayOrigin: mouse; fuseTimeout: 0"
               position="0 0 -1"
               touch-enabled="true"
               geometry="primitive: ring; radiusOuter: 0; radiusInner: 0"
             ></a-entity>
-          )}
-        </a-camera>
+          </a-camera>
+        )}
       </WrapperScene>
     </>
   );
