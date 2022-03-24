@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function WrapperScene({ children, assets, forceVR }) {
+function WrapperScene({ children, assets, forceVR, noVr }) {
   const [assetReady, setAssetReady] = useState(false);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ function WrapperScene({ children, assets, forceVR }) {
       <a-scene
         auto-enter-vr
         loading-screen="enabled: false"
-        vr-mode-ui={forceVR ? "enterVRButton: #myEnterVRButton; enterARButton: #myEnterARButton" : "enterARButton: #myEnterARButton"}
+        vr-mode-ui={noVr ? "enabled: false;" : forceVR ? "enterVRButton: #myEnterVRButton; enterARButton: #myEnterARButton" : "enterARButton: #myEnterARButton"}
         // stats
       >
         <button

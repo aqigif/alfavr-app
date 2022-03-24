@@ -47,7 +47,7 @@ function Store() {
 
   return (
     <>
-      <WrapperScene assets={<Assets />} forceVR={params?.["vr-mode"] !== undefined}>
+      <WrapperScene assets={<Assets />} noVr={params?.["plain"] !== undefined} forceVR={params?.["vr-mode"] !== undefined}>
         <a-entity gltf-model="#store" position="0 0 0"></a-entity>
         {/* <Entity
           primitive="a-circle"
