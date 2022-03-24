@@ -1,5 +1,4 @@
-import { Entity } from "aframe-react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "../../components/modal";
 import WrapperScene from "../../components/scene";
 import DrinkMenuContent from "./components/drinkMenuContent";
@@ -29,24 +28,26 @@ const DrinkMenu = ({ open, setOpen, onClose }) => {
 };
 
 function Store() {
-  const [cameraPosition, setCameraPosition] = useState("0 1.5 10");
+  // const [cameraPosition, setCameraPosition] = useState("0 1.5 10");
   const [menuOpen, setOpenMenu] = useState({
     status: false,
     menu: "",
   });
 
-  const handleMove = (to) => {
-    setCameraPosition(to);
-    const cameraRig = document.getElementById("camera");
-    cameraRig.setAttribute(
-      "animation",
-      `property: position; from: ${cameraPosition}; to: ${to}; dur: 700`
-    );
-  };
+  // const handleMove = (to) => {
+  //   setCameraPosition(to);
+  //   const cameraRig = document.getElementById("camera");
+  //   cameraRig.setAttribute(
+  //     "animation",
+  //     `property: position; from: ${cameraPosition}; to: ${to}; dur: 700`
+  //   );
+  // };
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
 
   return (
     <>
-      <WrapperScene assets={<Assets />}>
+      <WrapperScene assets={<Assets />} forceVR={params?.["vr-mode"] !== undefined}>
         <a-entity gltf-model="#store" position="0 0 0"></a-entity>
         {/* <Entity
           primitive="a-circle"
@@ -118,10 +119,10 @@ function Store() {
           width="4"
           material="opacity: 0.0; transparent: true"
         /> */}
-        <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
+        {/* <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
         <a-entity light="color: #fff; intensity: 1" position="-4 4 -5"></a-entity>
         <a-entity light="color: #fff; intensity: 0.2" position="4 -4 5"></a-entity>
-        <a-entity light="color: #fff; intensity: 0.2" position="-4 -4 -5"></a-entity>
+        <a-entity light="color: #fff; intensity: 0.2" position="-4 -4 -5"></a-entity> */}
         <a-camera
           position="0 1.5 10"
           // wasd-controls-enabled="false"
