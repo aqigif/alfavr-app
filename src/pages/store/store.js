@@ -42,11 +42,13 @@ function Store() {
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
 
-  const forceVR = params?.["vr-mode"] !== undefined;
-  const noVR = params?.["plain"] !== undefined;
   return (
     <>
-      <WrapperScene assets={<Assets />} noVr={noVR} forceVR={forceVR}>
+      <WrapperScene
+        assets={<Assets />}
+        noVr={params?.["plain"] !== undefined}
+        forceVR={params?.["vr-mode"] !== undefined}
+      >
         <a-entity gltf-model="#store" position="0 0 0"></a-entity>
         {/* <Entity
           primitive="a-circle"
@@ -122,34 +124,18 @@ function Store() {
         <a-entity light="color: #fff; intensity: 1" position="-4 4 -5"></a-entity>
         <a-entity light="color: #fff; intensity: 0.2" position="4 -4 5"></a-entity>
         <a-entity light="color: #fff; intensity: 0.2" position="-4 -4 -5"></a-entity> */}
-        {forceVR ? (
-          <a-camera
-            position="0 1.5 0"
-            touch-enabled="true"
-            id="camera"
-            camera
-            look-controls
-          >
-            <a-entity
-              cursor="fuse: true; fuseTimeout: 500"
-              position="0 0 -1"
-              geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-              material="color: black; shader: flat"
-            ></a-entity>
-          </a-camera>
-        ) : (
-          <a-camera
-            position="0 1.5 0"
-            touch-enabled="true"
-            id="camera"
-          >
-            <a-entity
-              cursor="rayOrigin: mouse; fuseTimeout: 0"
-              position="0 0 -1"
-              geometry="primitive: ring; radiusOuter: 0; radiusInner: 0"
-            ></a-entity>
-          </a-camera>
-        )}
+        <a-camera
+          position="0 1.5 0"
+          // wasd-controls-enabled="false"
+          touch-enabled="true"
+          id="camera"
+        >
+          <a-entity
+            cursor="rayOrigin: mouse; fuseTimeout: 0"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusOuter: 0; radiusInner: 0"
+          ></a-entity>
+        </a-camera>
         <DrinkMenu
           open={menuOpen?.status}
           setOpen={setOpenMenu}
