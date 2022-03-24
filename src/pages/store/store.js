@@ -124,7 +124,7 @@ function Store() {
         <a-entity light="color: #fff; intensity: 0.2" position="4 -4 5"></a-entity>
         <a-entity light="color: #fff; intensity: 0.2" position="-4 -4 -5"></a-entity> */}
         <a-camera
-          position="0 1.5 10"
+          position="0 1.5 0"
           // wasd-controls-enabled="false"
           touch-enabled="true"
           id="camera"
