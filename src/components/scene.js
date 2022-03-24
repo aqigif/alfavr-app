@@ -19,7 +19,7 @@ function WrapperScene({ children, assets, forceVR }) {
       <a-scene
         auto-enter-vr
         loading-screen="enabled: false"
-        vr-mode-ui={forceVR ? "enterVRButton: #myEnterVRButton; enterARButton: false;" : undefined}
+        vr-mode-ui={forceVR ? "enterVRButton: #myEnterVRButton;" : undefined}
       >
         {forceVR && (
           <div className="a-enter-vr custom-vr" aframe-injected="">
