@@ -11,10 +11,10 @@ function WrapperScene({ children, assets, environment }) {
     <div style={{
       position: "absolute", height: "100%", width: "100%"
     }}>
-      <Scene environment={environment}>
+      <a-scene loading-screen="enabled: false">
         {assets}
         {assetReady && children}
-      </Scene>
+      </a-scene>
     </div>
   );
 }
