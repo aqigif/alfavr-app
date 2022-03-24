@@ -118,8 +118,8 @@ function Store() {
                 }
                 return {
                   ...prev,
-                  trigger: "shop",
-                  fuse: "cashier",
+                  trigger: "click",
+                  fuse: "shop",
                 };
               });
             });
