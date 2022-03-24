@@ -9,10 +9,14 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "aframe": "^1.3.0",
+    "aframe-auto-detect-controllers-component": "^0.1.4",
+    "aframe-button-controls": "^1.1.0",
+    "aframe-extras": "^6.1.1",
     "aframe-react": "^4.4.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
+    "super-hands": "^3.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

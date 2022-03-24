@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Modal from "../../components/modal";
 import WrapperScene from "../../components/scene";
-import DrinkMenuContent from "./components/drinkMenuContent";
 
 const Assets = () => {
   return (
@@ -11,44 +9,60 @@ const Assets = () => {
   );
 };
 
-const DrinkMenu = ({ open, setOpen, onClose }) => {
-  return (
-    <Modal
-      open={open}
-      setOpen={setOpen}
-      onClose={onClose}
-      title="Selamat Datang"
-    >
-      <DrinkMenuContent onClose={onClose} />
-    </Modal>
-  );
-};
-
 function Store() {
   const AFRAME = window?.AFRAME;
-  const [isVr, setVr] = useState(false);
-  // const [cameraPosition, setCameraPosition] = useState("0 1.5 10");
-  const [menuOpen, setOpenMenu] = useState({
-    status: false,
-    menu: "",
+  const [click, setClick] = useState({
+    show: false,
+    fuse: "",
+    isVr: false,
   });
+  // const [cameraPosition, setCameraPosition] = useState("0 1.5 10");
 
   React.useEffect(() => {
     if (AFRAME) {
-      handleCassier();
+      handleCashier();
     }
   }, [AFRAME]);
 
-  const handleCassier = () => {
+  const handleCashier = () => {
     try {
       if (AFRAME) {
         AFRAME.registerComponent("cursor-listener", {
           init: function () {
+            this.el.addEventListener("mouseleave", function (evt) {
+              setClick((prev) => {
+                if (!prev?.isVr) {
+                  return prev;
+                }
+                return {
+                  ...prev,
+                  fuse: "",
+                };
+              });
+            });
             this.el.addEventListener("click", function (evt) {
-              console.log("I was clicked at: ", evt.detail.intersection.point);
-              setOpenMenu({
-                status: true,
-                menu: "drink",
+              // console.log("I was fusing at: ", evt.detail.intersection.point);
+              setClick((prev) => {
+                if (!prev?.isVr) {
+                  return {
+                    ...prev,
+                    show: true,
+                    fuse: "cashier",
+                  };
+                }
+                return prev;
+              });
+            });
+            this.el.addEventListener("fusing", function (evt) {
+              // console.log("I was fusing at: ", evt.detail.intersection.point);
+              setClick((prev) => {
+                if (!prev?.isVr) {
+                  return prev;
+                }
+                return {
+                  ...prev,
+                  fuse: "cashier",
+                };
               });
             });
           },
@@ -66,23 +80,57 @@ function Store() {
   // };
   const urlSearchParams = new URLSearchParams(window.location.search);
   const params = Object.fromEntries(urlSearchParams.entries());
-
   return (
     <>
       <WrapperScene
         assets={<Assets />}
         noVr={params?.["plain"] !== undefined}
         forceVR={params?.["vr-mode"] !== undefined}
-        onEnterVR={() => setVr(true)}
-        onExitVR={() => setVr(false)}
+        onEnterVR={() =>
+          setClick((prev) => {
+            return {
+              ...prev,
+              isVr: true,
+            };
+          })
+        }
+        onExitVR={() =>
+          setClick((prev) => {
+            return {
+              ...prev,
+              isVr: false,
+            };
+          })
+        }
+        onClickScene={() =>
+          setClick((prev) => {
+            if (prev?.isVr) {
+              if (prev?.fuse === "cashier") {
+                return {
+                  ...prev,
+                  show: true,
+                };
+              }
+              return {
+                ...prev,
+                show: false,
+              };
+            }
+            return prev;
+          })
+        }
       >
-        <a-entity gltf-model="#store" position="0 0 0"></a-entity>
+        <a-entity
+          button-controls
+          gltf-model="#store"
+          position="0 0 0"
+        ></a-entity>
         <a-box
           cursor-listener
           position="-2 0.5 -4"
           width="4"
           height="5"
-          material="opacity: 0.0; transparent: true"
+          material={"opacity: 0.0; transparent: true"}
         />
         <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
         <a-entity
@@ -98,21 +146,17 @@ function Store() {
           position="-4 -4 -5"
         ></a-entity>
         <a-camera position="0 1.5 0" touch-enabled="true">
-          {isVr ? (
+          {click?.isVr ? (
             <a-cursor color="black"></a-cursor>
           ) : (
             <a-entity
               cursor="rayOrigin: mouse; fuseTimeout: 0"
               position="0 0 -1"
+              touch-enabled="true"
               geometry="primitive: ring; radiusOuter: 0; radiusInner: 0"
             ></a-entity>
           )}
         </a-camera>
-        <DrinkMenu
-          open={menuOpen?.status}
-          setOpen={setOpenMenu}
-          onClose={() => setOpenMenu({ status: false })}
-        />
       </WrapperScene>
     </>
   );

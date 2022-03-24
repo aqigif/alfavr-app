@@ -7,6 +7,7 @@ function WrapperScene({
   noVr,
   onEnterVR,
   onExitVR,
+  onClickScene,
 }) {
   const [assetReady, setAssetReady] = useState(false);
   const AFRAME = window?.AFRAME;
@@ -23,8 +24,26 @@ function WrapperScene({
       console.log("EXIT VR");
       onExitVR();
     });
+    if (AFRAME) {
+      try {
+        AFRAME.registerComponent("global-vr-interaction", {
+          init: function () {
+            let controlsEl = document.querySelector("[button-controls]");
+            controlsEl.addEventListener("buttondown", function (evt) {});
+            controlsEl.addEventListener("buttonup", function (evt) {
+              onClickScene();
+            });
+          },
+        });
+      } catch (error) {}
+    }
   }, [AFRAME]);
 
+  const assetReadyRender = () => {
+    if (assetReady) {
+      return <>{children}</>;
+    }
+  };
   return (
     <div
       style={{
@@ -34,7 +53,9 @@ function WrapperScene({
       }}
     >
       <a-scene
+        global-vr-interaction
         loading-screen="enabled: false"
+        start-click
         vr-mode-ui={
           noVr
             ? "enabled: false;"
@@ -59,7 +80,7 @@ function WrapperScene({
           </div>
         )}
         {assets}
-        {assetReady && children}
+        {assetReadyRender()}
       </a-scene>
     </div>
   );
