@@ -1,12 +1,29 @@
 import { useEffect, useState } from "react";
 
-function WrapperScene({ children, assets, forceVR, noVr }) {
+function WrapperScene({
+  children,
+  assets,
+  forceVR,
+  noVr,
+  onEnterVR,
+  onExitVR,
+}) {
   const [assetReady, setAssetReady] = useState(false);
+  const AFRAME = window?.AFRAME;
 
   useEffect(() => {
     setAssetReady(true);
-    document.getElementById("myEnterVRButton");
-  }, []);
+    document.querySelector("a-scene").addEventListener("enter-vr", function () {
+      console.log("ENTERED VR");
+      if (AFRAME.utils.device.isMobile()) {
+        onEnterVR();
+      }
+    });
+    document.querySelector("a-scene").addEventListener("exit-vr", function () {
+      console.log("EXIT VR");
+      onExitVR();
+    });
+  }, [AFRAME]);
 
   return (
     <div

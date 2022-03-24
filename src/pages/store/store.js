@@ -26,6 +26,7 @@ const DrinkMenu = ({ open, setOpen, onClose }) => {
 
 function Store() {
   const AFRAME = window?.AFRAME;
+  const [isVr, setVr] = useState(false);
   // const [cameraPosition, setCameraPosition] = useState("0 1.5 10");
   const [menuOpen, setOpenMenu] = useState({
     status: false,
@@ -72,6 +73,8 @@ function Store() {
         assets={<Assets />}
         noVr={params?.["plain"] !== undefined}
         forceVR={params?.["vr-mode"] !== undefined}
+        onEnterVR={() => setVr(true)}
+        onExitVR={() => setVr(false)}
       >
         <a-entity gltf-model="#store" position="0 0 0"></a-entity>
         <a-box
@@ -94,8 +97,16 @@ function Store() {
           light="color: #fff; intensity: 0.2"
           position="-4 -4 -5"
         ></a-entity>
-        <a-camera position="0 1.5 0">
-          <a-cursor color="black"></a-cursor>
+        <a-camera position="0 1.5 0" touch-enabled="true">
+          {isVr ? (
+            <a-cursor color="black"></a-cursor>
+          ) : (
+            <a-entity
+              cursor="rayOrigin: mouse; fuseTimeout: 0"
+              position="0 0 -1"
+              geometry="primitive: ring; radiusOuter: 0; radiusInner: 0"
+            ></a-entity>
+          )}
         </a-camera>
         <DrinkMenu
           open={menuOpen?.status}
