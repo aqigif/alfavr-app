@@ -17,16 +17,17 @@ function WrapperScene({ children, assets, forceVR, noVr }) {
       }}
     >
       <a-scene
-        auto-enter-vr
         loading-screen="enabled: false"
-        vr-mode-ui={noVr ? "enabled: false;" : forceVR ? "enterVRButton: #myEnterVRButton; enterARButton: #myEnterARButton" : "enterARButton: #myEnterARButton"}
+        vr-mode-ui={
+          noVr
+            ? "enabled: false;"
+            : forceVR
+            ? "enterVRButton: #myEnterVRButton; enterARButton: #myEnterARButton"
+            : "enterARButton: #myEnterARButton"
+        }
         // stats
       >
-        <button
-          id="myEnterARButton"
-          style={{display: 'none'}}
-        >
-        </button>
+        <button id="myEnterARButton" style={{ display: "none" }}></button>
         {forceVR && (
           <div className="a-enter-vr custom-vr" aframe-injected="">
             <div className="icon" />
