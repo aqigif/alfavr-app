@@ -20,7 +20,7 @@ function WrapperScene({ children, assets, forceVR }) {
         auto-enter-vr
         loading-screen="enabled: false"
         vr-mode-ui={forceVR ? "enterVRButton: #myEnterVRButton; enterARButton: #myEnterARButton" : "enterARButton: #myEnterARButton"}
-        stats
+        // stats
       >
         <button
           id="myEnterARButton"

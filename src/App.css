@@ -70,3 +70,7 @@
   font-weight: bold;
   font-size: 18px;
 }
+
+.custom-vr .custom-vr-button:hover {
+  background-color: #fff;
+}
