@@ -120,10 +120,10 @@ function Store() {
           width="4"
           material="opacity: 0.0; transparent: true"
         /> */}
-        {/* <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
+        <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
         <a-entity light="color: #fff; intensity: 1" position="-4 4 -5"></a-entity>
         <a-entity light="color: #fff; intensity: 0.2" position="4 -4 5"></a-entity>
-        <a-entity light="color: #fff; intensity: 0.2" position="-4 -4 -5"></a-entity> */}
+        <a-entity light="color: #fff; intensity: 0.2" position="-4 -4 -5"></a-entity>
         <a-camera
           position="0 1.5 0"
           // wasd-controls-enabled="false"
