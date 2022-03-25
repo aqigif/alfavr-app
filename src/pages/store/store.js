@@ -5,13 +5,7 @@ const Assets = () => {
   return (
     <a-assets>
       <a-asset-item id="store" src="/assets/alfamart-6.glb"></a-asset-item>
-      <a-assets>
-        <img
-          id="store-icon"
-          alt="store-icon"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnz-9Nq-b2NYqQFfS1KaQXJmC8KDL1wOzNHg&usqp=CAU"
-        />
-      </a-assets>
+      {/* <a-asset-item id="store-fbx" src="/assets/alfamart.FBX"></a-asset-item> */}
     </a-assets>
   );
 };
