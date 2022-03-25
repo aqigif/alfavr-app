@@ -227,6 +227,7 @@ function Store() {
               <a-cursor
                 color="red"
                 position="0 0 -1"
+                scale="1 1 1"
                 animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 2 2 2"
               ></a-cursor>
             </a-camera>
