@@ -205,6 +205,7 @@ function Store() {
           height="5"
           depth="10"
           material={"opacity:0.0;"}
+          className="clickable"
         />
         <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
         <a-entity
@@ -223,7 +224,11 @@ function Store() {
         {click?.isVr ? (
           <a-entity id="camera" position="0 0 0">
             <a-camera position="0 0 0">
-              <a-cursor color="red" position="0 0 -1"></a-cursor>
+              <a-cursor
+                color="red"
+                position="0 0 -1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 1.3 1.3 1.3"
+              ></a-cursor>
             </a-camera>
           </a-entity>
         ) : (
@@ -276,6 +281,7 @@ function Store() {
                 color="red"
                 position="-0.59 0.10 0.01"
                 close-shop
+                className="clickable"
               >
                 <a-text
                   position="-0.1 0 0"
