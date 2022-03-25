@@ -5,13 +5,7 @@ const Assets = () => {
   return (
     <a-assets>
       <a-asset-item id="store" src="/assets/alfamart-6.glb"></a-asset-item>
-      <a-assets>
-        <img
-          id="store-icon"
-          alt="store-icon"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnz-9Nq-b2NYqQFfS1KaQXJmC8KDL1wOzNHg&usqp=CAU"
-        />
-      </a-assets>
+      {/* <a-asset-item id="store-fbx" src="/assets/alfamart.FBX"></a-asset-item> */}
     </a-assets>
   );
 };
@@ -205,7 +199,7 @@ function Store() {
           height="5"
           depth="10"
           material={"opacity:0.0;"}
-          className="clickable"
+          class="clickable"
         />
         <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
         <a-entity
@@ -229,6 +223,9 @@ function Store() {
                 position="0 0 -1"
                 scale="1 1 1"
                 animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 2 2 2"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 1500; from: 2 2 2; to: 1 1 1"
+                raycaster="objects: .clickable"
+                fuse="true"
               ></a-cursor>
             </a-camera>
           </a-entity>
@@ -282,7 +279,7 @@ function Store() {
                 color="red"
                 position="-0.59 0.10 0.01"
                 close-shop
-                className="clickable"
+                class="clickable"
               >
                 <a-text
                   position="-0.1 0 0"
