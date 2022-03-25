@@ -205,7 +205,7 @@ function Store() {
           height="5"
           depth="10"
           material={"opacity:0.0;"}
-          className="clickable"
+          class="clickable"
         />
         <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
         <a-entity
@@ -222,19 +222,19 @@ function Store() {
         ></a-entity>
 
         {click?.isVr ? (
-          // <a-entity id="camera" position="0 0 0">
-          <a-camera position="0 0 0">
-            <a-cursor
-              color="red"
-              position="0 0 -1"
-              scale="1 1 1"
-              animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 2 2 2"
-              raycaster="objects: .clickable"
-              fuse="true"
-            ></a-cursor>
-          </a-camera>
+          <a-entity id="camera" position="0 0 0">
+            <a-camera position="0 0 0">
+              <a-cursor
+                color="red"
+                position="0 0 -1"
+                scale="1 1 1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 2 2 2"
+                raycaster="objects: .clickable"
+                fuse="true"
+              ></a-cursor>
+            </a-camera>
+          </a-entity>
         ) : (
-          // {/* </a-entity> */}
           <a-camera id="camera" position="0 1.5 0" touch-enabled="true">
             <a-entity
               cursor="rayOrigin: mouse; fuseTimeout: 0"
