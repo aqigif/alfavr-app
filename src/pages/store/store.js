@@ -229,6 +229,7 @@ function Store() {
                 position="0 0 -1"
                 scale="1 1 1"
                 animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 2 2 2"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 1500; from: 2 2 2; to: 1 1 1"
                 raycaster="objects: .clickable"
                 fuse="true"
               ></a-cursor>
@@ -284,7 +285,7 @@ function Store() {
                 color="red"
                 position="-0.59 0.10 0.01"
                 close-shop
-                className="clickable"
+                class="clickable"
               >
                 <a-text
                   position="-0.1 0 0"
