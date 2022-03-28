@@ -233,6 +233,7 @@ function Store() {
           <a-camera id="camera" position="0 1.5 0" touch-enabled="true">
             <a-entity
               cursor="rayOrigin: mouse; fuseTimeout: 0"
+              scale="0 0 0"
               position="0 0 -1"
               touch-enabled="true"
               geometry="primitive: ring; radiusOuter: 0; radiusInner: 0"
