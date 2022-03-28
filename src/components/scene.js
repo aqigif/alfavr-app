@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { addQueryParam } from "../utils/queryParams";
 
 function WrapperScene({
   children,
@@ -15,13 +16,13 @@ function WrapperScene({
   useEffect(() => {
     setAssetReady(true);
     document.querySelector("a-scene").addEventListener("enter-vr", function () {
-      console.log("ENTERED VR");
+      addQueryParam("fullscreen", "true")
       if (AFRAME.utils.device.isMobile()) {
         onEnterVR();
       }
     });
     document.querySelector("a-scene").addEventListener("exit-vr", function () {
-      console.log("EXIT VR");
+      addQueryParam("fullscreen", "false")
       onExitVR();
     });
     if (AFRAME) {
@@ -54,8 +55,8 @@ function WrapperScene({
     >
       <a-scene
         global-vr-interaction
-        loading-screen="enabled: false"
         start-click
+        loading-screen="dotsColor: red; backgroundColor: white"
         vr-mode-ui={
           noVr
             ? "enabled: false;"

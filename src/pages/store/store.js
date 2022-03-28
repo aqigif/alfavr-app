@@ -5,13 +5,7 @@ const Assets = () => {
   return (
     <a-assets>
       <a-asset-item id="store" src="/assets/alfamart-6.glb"></a-asset-item>
-      <a-assets>
-        <img
-          id="store-icon"
-          alt="store-icon"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnz-9Nq-b2NYqQFfS1KaQXJmC8KDL1wOzNHg&usqp=CAU"
-        />
-      </a-assets>
+      {/* <a-asset-item id="store-fbx" src="/assets/alfamart.FBX"></a-asset-item> */}
     </a-assets>
   );
 };
@@ -91,7 +85,6 @@ function Store() {
                   ...prev,
                   trigger: "mouseleave",
                   fuse: "",
-                  show: false,
                 };
               });
             });
@@ -188,7 +181,6 @@ function Store() {
               }
               return {
                 ...prev,
-                show: false,
               };
             }
             return prev;
@@ -207,6 +199,7 @@ function Store() {
           height="5"
           depth="10"
           material={"opacity:0.0;"}
+          class="clickable"
         />
         <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
         <a-entity
@@ -225,13 +218,22 @@ function Store() {
         {click?.isVr ? (
           <a-entity id="camera" position="0 0 0">
             <a-camera position="0 0 0">
-              <a-cursor color="red" position="0 0 -1"></a-cursor>
+              <a-cursor
+                color="red"
+                position="0 0 -1"
+                scale="1 1 1"
+                animation__fusing="property: scale; startEvents: fusing; easing: easeInCubic; dur: 1500; from: 1 1 1; to: 2 2 2"
+                animation__mouseleave="property: scale; startEvents: mouseleave; easing: easeInCubic; dur: 1500; from: 2 2 2; to: 1 1 1"
+                raycaster="objects: .clickable"
+                fuse="true"
+              ></a-cursor>
             </a-camera>
           </a-entity>
         ) : (
           <a-camera id="camera" position="0 1.5 0" touch-enabled="true">
             <a-entity
               cursor="rayOrigin: mouse; fuseTimeout: 0"
+              scale="0 0 0"
               position="0 0 -1"
               touch-enabled="true"
               geometry="primitive: ring; radiusOuter: 0; radiusInner: 0"
@@ -278,6 +280,7 @@ function Store() {
                 color="red"
                 position="-0.59 0.10 0.01"
                 close-shop
+                class="clickable"
               >
                 <a-text
                   position="-0.1 0 0"
