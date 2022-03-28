@@ -201,6 +201,19 @@ function Store() {
           material={"opacity:0.0;"}
           class="clickable"
         />
+        <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
+        <a-entity
+          light="color: #fff; intensity: 1"
+          position="-4 4 -5"
+        ></a-entity>
+        <a-entity
+          light="color: #fff; intensity: 0.2"
+          position="4 -4 5"
+        ></a-entity>
+        <a-entity
+          light="color: #fff; intensity: 0.2"
+          position="-4 -4 -5"
+        ></a-entity>
 
         {click?.isVr ? (
           <a-entity id="camera" position="0 0 0">
