@@ -15,4 +15,5 @@ code {
 .a-loader-title {
   display: none;
   color: transparent;
+  height: 0px;
 }
