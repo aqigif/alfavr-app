@@ -64,6 +64,7 @@ function WrapperScene({
         }
         // stats
       >
+        <a-scene loading-screen="dotsColor: red; backgroundColor: white"></a-scene>
         <button id="myEnterARButton" style={{ display: "none" }}></button>
         {forceVR && (
           <div className="a-enter-vr custom-vr" aframe-injected="">
