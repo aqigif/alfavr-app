@@ -54,7 +54,6 @@ function WrapperScene({
     >
       <a-scene
         global-vr-interaction
-        loading-screen="enabled: false"
         start-click
         vr-mode-ui={
           noVr
