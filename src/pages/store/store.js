@@ -4,8 +4,7 @@ import WrapperScene from "../../components/scene";
 const Assets = () => {
   return (
     <a-assets>
-      <a-asset-item id="store" src="/assets/alfamart-6.glb"></a-asset-item>
-      {/* <a-asset-item id="store-fbx" src="/assets/alfamart.FBX"></a-asset-item> */}
+      <a-asset-item id="store" src="/assets/alfamind/Alfamind-Store.gltf"></a-asset-item>
     </a-assets>
   );
 };
