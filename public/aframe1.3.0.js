@@ -23401,7 +23401,7 @@ module.exports = anime;
 				cameraL.viewport.set(0, 0, renderWidth / 2, renderHeight);
 				cameraR.viewport.set(renderWidth / 2, 0, renderWidth / 2, renderHeight);
 				animation.start();
-				scope.dispatchEvent({
+				window.dispatchEvent({
 					type: 'sessionstart'
 				});
 			} else {
@@ -23410,7 +23410,7 @@ module.exports = anime;
 				}
 
 				animation.stop();
-				scope.dispatchEvent({
+				window.dispatchEvent({
 					type: 'sessionend'
 				});
 			}
