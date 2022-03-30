@@ -23401,18 +23401,22 @@ module.exports = anime;
 				cameraL.viewport.set(0, 0, renderWidth / 2, renderHeight);
 				cameraR.viewport.set(renderWidth / 2, 0, renderWidth / 2, renderHeight);
 				animation.start();
-				window.dispatchEvent({
-					type: 'sessionstart'
-				});
+				if (scope.dispatchEvent) {
+					scope.dispatchEvent({
+						type: 'sessionstart'
+					});
+				}
 			} else {
 				if (scope.enabled) {
 					renderer.setDrawingBufferSize(currentSize.width, currentSize.height, currentPixelRatio);
 				}
 
 				animation.stop();
-				window.dispatchEvent({
-					type: 'sessionend'
-				});
+				if (scope.dispatchEvent) {
+					scope.dispatchEvent({
+						type: 'sessionend'
+					});
+				}
 			}
 		} //
 
@@ -53943,7 +53947,7 @@ module.exports={
     "super-animejs": "^3.1.0",
     "super-three": "0.137.0",
     "three-bmfont-text": "dmarcos/three-bmfont-text#21d017046216e318362c48abd1a48bddfb6e0733",
-    "webvr-polyfill": "^0.10.12"
+    "webvr-polyfill": "^0.10.10"
   },
   "devDependencies": {
     "browserify": "^13.1.0",
