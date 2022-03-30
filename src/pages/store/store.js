@@ -4,8 +4,7 @@ import WrapperScene from "../../components/scene";
 const Assets = () => {
   return (
     <a-assets>
-      <a-asset-item id="store" src="/assets/alfamart-6.glb"></a-asset-item>
-      {/* <a-asset-item id="store-fbx" src="/assets/alfamart.FBX"></a-asset-item> */}
+      <a-asset-item id="store" src="/assets/alfamind/Alfamind-Store.gltf"></a-asset-item>
     </a-assets>
   );
 };
@@ -201,19 +200,6 @@ function Store() {
           material={"opacity:0.0;"}
           class="clickable"
         />
-        <a-entity light="color: #fff; intensity: 1" position="4 4 5"></a-entity>
-        <a-entity
-          light="color: #fff; intensity: 1"
-          position="-4 4 -5"
-        ></a-entity>
-        <a-entity
-          light="color: #fff; intensity: 0.2"
-          position="4 -4 5"
-        ></a-entity>
-        <a-entity
-          light="color: #fff; intensity: 0.2"
-          position="-4 -4 -5"
-        ></a-entity>
 
         {click?.isVr ? (
           <a-entity id="camera" position="0 0 0">
