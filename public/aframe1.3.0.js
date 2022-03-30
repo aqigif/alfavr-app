@@ -53939,7 +53939,7 @@ module.exports={
     "present": "0.0.6",
     "promise-polyfill": "^3.1.0",
     "super-animejs": "^3.1.0",
-    "super-three": "^0.137.0",
+    "super-three": "0.137.0",
     "three-bmfont-text": "dmarcos/three-bmfont-text#21d017046216e318362c48abd1a48bddfb6e0733",
     "webvr-polyfill": "^0.10.12"
   },
