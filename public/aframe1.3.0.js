@@ -23387,8 +23387,10 @@ module.exports = anime;
 				currentPixelRatio;
 
 		function onVRDisplayPresentChange() {
+			console.log(scope, "scope")
 			var isPresenting = scope.isPresenting = device !== null && device.isPresenting === true;
 
+			console.log(isPresenting, "isPresenting")
 			if (isPresenting) {
 				var eyeParameters = device.getEyeParameters('left');
 				renderWidth = 2 * eyeParameters.renderWidth * framebufferScaleFactor;
