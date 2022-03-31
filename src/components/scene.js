@@ -54,8 +54,8 @@ function WrapperScene({
     <div
       style={{
         position: "absolute",
-        height: "100%",
-        width: "100%",
+        height: "100vh",
+        width: "100vw"
       }}
     >
       <div class="loader-container">
