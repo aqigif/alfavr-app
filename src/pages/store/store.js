@@ -25,7 +25,7 @@ function Store() {
       document.querySelector('#store').addEventListener('loaded', function() {
         const el = document.querySelector(".loader-container");
         if (el) {
-          el.remove();
+          // el.remove();
         }
         console.log('loaded');
      });
@@ -252,7 +252,7 @@ function Store() {
               ></a-text>
               <a-text
                 position="-0.85 0.37 0"
-                value="Alfamart Virtual Store"
+                value="Alfamind Virtual Store"
                 color="black"
                 scale="0.6 0.6 0.6"
               ></a-text>
