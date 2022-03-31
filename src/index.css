@@ -27,7 +27,16 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: #fff;
+  flex-direction: column;
+}
+
+.loader-container p {
+  font-size: 14px;
+  position: absolute;
+  top: calc(50vh + 60px);
+  text-align: center;
+  max-width: 300px;
 }
 .loader {
   border: 4px solid #f3f3f3;
@@ -36,6 +45,10 @@ code {
   width: 20px;
   height: 20px;
   animation: spin 2s linear infinite;
+}
+
+.loading {
+  height: 300px;
 }
 
 @keyframes spin {

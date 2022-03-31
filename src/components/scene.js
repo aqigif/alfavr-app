@@ -11,10 +11,14 @@ function WrapperScene({
   onClickScene,
 }) {
   const [assetReady, setAssetReady] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
   const AFRAME = window?.AFRAME;
 
   useEffect(() => {
     setAssetReady(true);
+    setTimeout(() => {
+      setLoadingText("Please wait while we are getting you to Alfamind Virtual Store")
+    }, 4000);
     document.querySelector("a-scene").addEventListener("enter-vr", function () {
       addQueryParam("fullscreen", "true")
       if (AFRAME.utils.device.isMobile()) {
@@ -55,7 +59,9 @@ function WrapperScene({
       }}
     >
       <div class="loader-container">
-        <div class="loader"></div>
+        {/* <div class="loader"></div> */}
+        <img src="/loading-world.gif" alt="loading" className="loading" />
+        <p>{loadingText}</p>
       </div>
       <a-scene
         global-vr-interaction
