@@ -22,6 +22,13 @@ function Store() {
   React.useEffect(() => {
     if (AFRAME) {
       handleCashier();
+      document.querySelector('#store').addEventListener('loaded', function() {
+        const el = document.querySelector(".loader-container");
+        if (el) {
+          el.remove();
+        }
+        console.log('loaded');
+     });
     }
   }, [AFRAME]);
   const handleCashier = () => {

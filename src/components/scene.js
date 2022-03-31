@@ -46,6 +46,7 @@ function WrapperScene({
     }
   };
   return (
+    <>
     <div
       style={{
         position: "absolute",
@@ -53,6 +54,9 @@ function WrapperScene({
         width: "100%",
       }}
     >
+      <div class="loader-container">
+        <div class="loader"></div>
+      </div>
       <a-scene
         global-vr-interaction
         loading-screen="dotsColor: red; backgroundColor: white"
@@ -83,6 +87,7 @@ function WrapperScene({
         {assetReadyRender()}
       </a-scene>
     </div>
+    </>
   );
 }
 
