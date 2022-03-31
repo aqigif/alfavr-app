@@ -259,7 +259,13 @@ function Store() {
               <a-text
                 position="-0.85 0.26 0"
                 color="black"
-                value="Digital Platform where you can buy everything virtually"
+                value="Digital Platform where you can buy everything"
+                scale="0.2 0.2 0.2"
+              ></a-text>
+              <a-text
+                position="0.05 0.26 0"
+                color="black"
+                value="virtually"
                 scale="0.2 0.2 0.2"
               ></a-text>
               <a-plane
