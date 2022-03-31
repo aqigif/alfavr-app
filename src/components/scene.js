@@ -55,7 +55,7 @@ function WrapperScene({
     >
       <a-scene
         global-vr-interaction
-        loading-screen="dotsColor: red; backgroundColor: white"
+        // loading-screen="dotsColor: red; backgroundColor: white"
         vr-mode-ui={
           noVr
             ? "enabled: false;"
