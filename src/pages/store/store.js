@@ -4,7 +4,7 @@ import WrapperScene from "../../components/scene";
 const Assets = () => {
   return (
     <a-assets>
-      <a-asset-item id="store" src="/assets/alfamind/Alfamind-Store.gltf"></a-asset-item>
+      <a-asset-item id="store" src="/assets/Alfamind-Store.glb"></a-asset-item>
     </a-assets>
   );
 };
@@ -22,6 +22,13 @@ function Store() {
   React.useEffect(() => {
     if (AFRAME) {
       handleCashier();
+      document.querySelector('#store').addEventListener('loaded', function() {
+        const el = document.querySelector(".loader-container");
+        if (el) {
+          el.remove();
+        }
+        console.log('loaded');
+     });
     }
   }, [AFRAME]);
   const handleCashier = () => {
