@@ -25,7 +25,7 @@ function Store() {
       document.querySelector('#store').addEventListener('loaded', function() {
         const el = document.querySelector(".loader-container");
         if (el) {
-          // el.remove();
+          el.remove();
         }
         console.log('loaded');
      });
