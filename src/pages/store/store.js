@@ -205,7 +205,7 @@ function Store() {
           height="5"
           depth="10"
           material={"opacity:0.0;"}
-          class="clickable"
+          className="clickable"
         />
 
         {click?.isVr ? (
@@ -280,7 +280,7 @@ function Store() {
                 color="red"
                 position="-0.59 0.10 0.01"
                 close-shop
-                class="clickable"
+                className="clickable"
               >
                 <a-text
                   position="-0.1 0 0"
