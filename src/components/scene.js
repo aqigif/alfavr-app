@@ -58,8 +58,8 @@ function WrapperScene({
         width: "100vw"
       }}
     >
-      <div class="loader-container">
-        {/* <div class="loader"></div> */}
+      <div className="loader-container">
+        {/* <div className="loader"></div> */}
         <img src="/loading-world.gif" alt="loading" className="loading" />
         <p>{loadingText}</p>
       </div>
