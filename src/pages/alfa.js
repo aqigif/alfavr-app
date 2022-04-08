@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import WrapperScene from "../../components/scene";
+import WrapperScene from "../components/scene";
 
 const Assets = () => {
   return (
@@ -9,7 +9,7 @@ const Assets = () => {
   );
 };
 
-function Store() {
+function Alfa() {
   const AFRAME = window?.AFRAME;
   const [click, setClick] = useState({
     show: false,
@@ -296,4 +296,4 @@ function Store() {
   );
 }
 
-export default Store;
+export default Alfa;
