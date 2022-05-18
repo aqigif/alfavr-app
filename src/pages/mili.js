@@ -34,7 +34,9 @@ function Mili() {
         console.log("loaded");
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [AFRAME]);
+
   const handleCashier = () => {
     try {
       if (AFRAME) {

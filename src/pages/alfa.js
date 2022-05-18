@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import WrapperScene from "../components/scene";
+import { addQueryParam } from "../utils/queryParams";
 
 const Assets = () => {
   return (
@@ -30,7 +31,9 @@ function Alfa() {
         console.log('loaded');
      });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [AFRAME]);
+
   const handleCashier = () => {
     try {
       if (AFRAME) {
@@ -53,11 +56,15 @@ function Alfa() {
               setClick((prev) => {
                 if (!prev?.isVr) {
                   handleMove("-2 1.5 -2.3");
+                  if (prev.cameraPosition === "-2 1.5 -2.3") {
+                    addQueryParam("store", "true")
+                    setTimeout(() => addQueryParam("store", "false"), 1000)
+                  }
                   return {
                     ...prev,
                     trigger: "click",
                     cameraPosition: "-2 1.5 -2.3",
-                    show: prev.cameraPosition === "-2 1.5 -2.3",
+                    // show: prev.cameraPosition === "-2 1.5 -2.3",
                     fuse: "cashier",
                   };
                 }

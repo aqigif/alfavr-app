@@ -42,6 +42,7 @@ function WrapperScene({
         });
       } catch (error) {}
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [AFRAME]);
 
   const assetReadyRender = () => {
